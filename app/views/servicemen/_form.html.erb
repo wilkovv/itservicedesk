@@ -1,0 +1,32 @@
+<%= form_with(model: serviceman) do |form| %>
+  <% if serviceman.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(serviceman.errors.count, "error") %> prohibited this serviceman from being saved:</h2>
+
+      <ul>
+        <% serviceman.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :surname, style: "display: block" %>
+    <%= form.text_field :surname %>
+  </div>
+
+  <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+class Serviceman < ApplicationRecord
+end
