@@ -36,3 +36,6 @@
 
 # Ignore Gemfile lock
 Gemfile.lock
+
+# Ignore erd pdf
+erd.pdf
