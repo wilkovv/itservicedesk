@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_03_223030) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_03_225221) do
+  create_table "issues", force: :cascade do |t|
+    t.integer "servicemen_id"
+    t.integer "users_id"
+    t.string "description"
+    t.string "photo"
+    t.string "category"
+    t.string "service_comment"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["servicemen_id"], name: "index_issues_on_servicemen_id"
+    t.index ["users_id"], name: "index_issues_on_users_id"
+  end
+
   create_table "servicemen", force: :cascade do |t|
     t.string "name"
     t.string "surname"
