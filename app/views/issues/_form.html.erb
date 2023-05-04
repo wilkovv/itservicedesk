@@ -12,6 +12,41 @@
   <% end %>
 
   <div>
+    <%= form.label :servicemen_id, style: "display: block" %>
+    <%= form.text_field :servicemen_id %>
+  </div>
+
+  <div>
+    <%= form.label :users_id, style: "display: block" %>
+    <%= form.text_field :users_id %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :photo, style: "display: block" %>
+    <%= form.text_field :photo %>
+  </div>
+
+  <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.text_field :category %>
+  </div>
+
+  <div>
+    <%= form.label :service_comment, style: "display: block" %>
+    <%= form.text_field :service_comment %>
+  </div>
+
+  <div>
+    <%= form.label :status_string, style: "display: block" %>
+    <%= form.text_field :status_string %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

@@ -14,6 +14,13 @@ class IssuesTest < ApplicationSystemTestCase
     visit issues_url
     click_on "New issue"
 
+    fill_in "Category", with: @issue.category
+    fill_in "Description", with: @issue.description
+    fill_in "Photo", with: @issue.photo
+    fill_in "Service comment", with: @issue.service_comment
+    fill_in "Servicemen", with: @issue.servicemen_id
+    fill_in "Status string", with: @issue.status_string
+    fill_in "Users", with: @issue.users_id
     click_on "Create Issue"
 
     assert_text "Issue was successfully created"
@@ -24,6 +31,13 @@ class IssuesTest < ApplicationSystemTestCase
     visit issue_url(@issue)
     click_on "Edit this issue", match: :first
 
+    fill_in "Category", with: @issue.category
+    fill_in "Description", with: @issue.description
+    fill_in "Photo", with: @issue.photo
+    fill_in "Service comment", with: @issue.service_comment
+    fill_in "Servicemen", with: @issue.servicemen_id
+    fill_in "Status string", with: @issue.status_string
+    fill_in "Users", with: @issue.users_id
     click_on "Update Issue"
 
     assert_text "Issue was successfully updated"
