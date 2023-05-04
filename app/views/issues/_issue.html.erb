@@ -1,22 +1,22 @@
 <div id="<%= dom_id issue %>">
   <p>
-    <strong>Servicemen:</strong>
+    <strong>Serviceman:</strong>
     <%= issue.serviceman_id %>
   </p>
 
   <p>
-    <strong>Users:</strong>
+    <strong>User:</strong>
     <%= issue.user_id %>
+  </p>
+
+  <p>
+    <strong>Photo:</strong>
+    <%= link_to issue.photo.filename, issue.photo if issue.photo.attached? %>
   </p>
 
   <p>
     <strong>Description:</strong>
     <%= issue.description %>
-  </p>
-
-  <p>
-    <strong>Photo:</strong>
-    <%= issue.photo %>
   </p>
 
   <p>

@@ -17,7 +17,7 @@ class IssuesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create issue" do
     assert_difference("Issue.count") do
-      post issues_url, params: { issue: { category: @issue.category, description: @issue.description, photo: @issue.photo, service_comment: @issue.service_comment, serviceman_id: @issue.serviceman_id, status_string: @issue.status_string, user_id: @issue.user_id } }
+      post issues_url, params: { issue: { category: @issue.category, description: @issue.description, service_comment: @issue.service_comment, serviceman_id: @issue.serviceman_id, status_string: @issue.status_string, user_id: @issue.user_id } }
     end
 
     assert_redirected_to issue_url(Issue.last)
@@ -34,7 +34,7 @@ class IssuesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update issue" do
-    patch issue_url(@issue), params: { issue: { category: @issue.category, description: @issue.description, photo: @issue.photo, service_comment: @issue.service_comment, serviceman_id: @issue.serviceman_id, status_string: @issue.status_string, user_id: @issue.user_id } }
+    patch issue_url(@issue), params: { issue: { category: @issue.category, description: @issue.description, service_comment: @issue.service_comment, serviceman_id: @issue.serviceman_id, status_string: @issue.status_string, user_id: @issue.user_id } }
     assert_redirected_to issue_url(@issue)
   end
 

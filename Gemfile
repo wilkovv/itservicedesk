@@ -72,3 +72,5 @@ group :test do
 end
 
 gem "rails-erd", "~> 1.7"
+
+gem "activestorage", "~> 7.0"

@@ -1,19 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  servicemen: one
-  users: one
+  serviceman: one
+  user: one
   description: MyString
-  photo: MyString
   category: MyString
   service_comment: MyString
   status_string: MyString
 
 two:
-  servicemen: two
-  users: two
+  serviceman: two
+  user: two
   description: MyString
-  photo: MyString
   category: MyString
   service_comment: MyString
   status_string: MyString
