@@ -74,3 +74,5 @@ end
 gem "rails-erd", "~> 1.7"
 
 gem "activestorage", "~> 7.0"
+
+gem "bootstrap", "~> 5.2"
