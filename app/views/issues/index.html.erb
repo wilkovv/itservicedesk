@@ -1,14 +1,38 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Issues</h1>
-
-<div id="issues">
-  <% @issues.each do |issue| %>
-    <%= render issue %>
-    <p>
-      <%= link_to "Show this issue", issue %>
-    </p>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Issues</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Created</th>
+            <th scope="col">Updated</th>
+            <th scope="col">Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @issues.each do |issue| %>
+            <tr>
+              <td><%= link_to issue.description, issue %></td>
+              <td><%= issue.created_at %></td>
+              <td><%= issue.updated_at %></td>
+              <td><%= truncate(issue.status_string, :length => 80) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 mt-3">
+      <%= button_to "New Issue", { :action => "new" }, :method => :get, :class => "btn btn-success" %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New issue", new_issue_path %>
