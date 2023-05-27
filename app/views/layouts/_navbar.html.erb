@@ -1,30 +1,60 @@
 <html lang="en" data-bs-theme="dark">
         <div class="container-fluid px-0">
-                <nav class="navbar navbar-expand-lg bg-primary">
-                        <a class="navbar-brand px-3" href="#">IT Help Desk</a>
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <nav class="navbar navbar-expand-sm bg-primary">
+                        <button class="navbar-toggler mx-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
-                                </button>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                                <ul class="nav">
-                                        <li class="nav-item">
-                                                <%= link_to "Issues", issues_path, class: current_page?(issues_path) ? "nav-link active" : "nav-link", aria_current: "page" %>
-                                        </li>
-                                </ul>
-                                                  <span class="nav">
-                                <% if user_signed_in? %>
-                                <div> Welcome <%= current_user.email %> </div>
-                                        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-                                <% elsif serviceman_signed_in? %>
-                                 <div> Welcome <%= current_serviceman.email %> </div>
-                                        <%= button_to "Sign out", destroy_serviceman_session_path, method: :delete, class: "btn btn-danger" %>
-                                <% else %>
-                                        <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-success" %>
-                                <% end %>
+                        </button>
+                        <a class="navbar-brand px-3 mx-auto ml-auto text-center" href="#">IT Help Desk</a>
+                        <% if user_signed_in? %>
+                                <span class="navbar-text d-block d-sm-none ml-auto">
+                                <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger mx-3" %>
                                 </span>
-                        </ul>
+                        <% elsif serviceman_signed_in? %>
+                                <span class="navbar-text d-block d-sm-none ml-auto">
+                                <%= button_to "Sign out", destroy_serviceman_session_path, method: :delete, class: "btn btn-danger mx-3" %>
+                                </span>
+                        <% else %>
+                                <span class="navbar-text d-block d-sm-none ml-auto">
+                                <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-outline-light mx-3" %>
+                                </span>
+                        <% end %>
+
+
+
+
+
+
+                        <div class="collapse navbar-collapse" id="navbarNav1">
+                                <ul class="navbar-nav me-auto">
+                                        <ul class="nav">
+                                                <li class="nav-item">
+                                                        <%= link_to "Issues", issues_path, class: current_page?(issues_path) ? "nav-link active" : "nav-link", aria_current: "page" %>
+                                                </li>
+                                        </ul>
+                                        
+                                                        
+                                </ul>
+                                <% if user_signed_in? %>
+                                
+                                <span class="text-light mx-3 d-none d-sm-block"><%= current_user.name %> <%= current_user.surname %></span>
+                                        <span class="navbar-text d-none d-sm-block">
+                                        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger mx-3" %>
+                                        </span>
+                                <% elsif serviceman_signed_in? %>
+                                 <span class="text-light mx-3 d-none d-sm-block"><%= current_serviceman.name %> <%= current_serviceman.surname %></span>
+                                        <span class="navbar-text d-none d-sm-block">
+                                        <%= button_to "Sign out", destroy_serviceman_session_path, method: :delete, class: "btn btn-danger mx-3" %>
+                                        </span>
+                                <% else %>
+                                        <span class="navbar-text d-none d-sm-block">
+                                        <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-outline-light mx-3" %>
+                                        </span>
+                                <% end %>
                         </div>
+
+
+
+
 
                 </nav>
         </div>
