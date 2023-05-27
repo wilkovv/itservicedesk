@@ -1,8 +1,12 @@
 <div class="container">
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center mt-4">
 <div class="col-6">
-
 <div class="mb-3">
+    
+      <div class="alert <%= 'alert-danger' if alert.present? %>" role="alert">
+        <%= alert %>
+      </div>
+    
 <h1>Log in</h1>
 </div>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -19,8 +23,6 @@
     <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
   </div>
   </div>
-
-  <%= render "devise/shared/error_messages" %>
 
   <div class="mb-3">
   <%- if request.path == new_serviceman_session_path %>
