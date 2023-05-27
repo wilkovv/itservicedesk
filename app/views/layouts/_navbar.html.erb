@@ -12,17 +12,6 @@
                                                 <%= link_to "Issues", issues_path, class: current_page?(issues_path) ? "nav-link active" : "nav-link", aria_current: "page" %>
                                         </li>
                                 </ul>
-                                <ul class="nav">
-                                        <li class="nav-item <%= 'active' if current_page?(servicemen_path) %>">
-                                                <% puts "Value of my_variable: #{servicemen_path.inspect}" %>
-                                                <%= link_to "Servicemen", servicemen_path, class: current_page?(servicemen_path) ? "nav-link active" : "nav-link" %>
-                                        </li>
-                                </ul>
-                                <ul class="nav">
-                                        <li class="nav-item <%= 'active' if current_page?(users_path) %>">
-                                                <%= link_to "Users", users_path, class: current_page?(users_path) ? "nav-link active" : "nav-link" %>    
-                                        </li>
-                                </ul>
                                                   <span class="nav">
                                 <% if user_signed_in? %>
                                 <div> Welcome <%= current_user.email %> </div>
