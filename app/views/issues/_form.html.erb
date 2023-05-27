@@ -1,3 +1,8 @@
+<div class="container">
+<div class="row justify-content-center mt-4">
+<div class="col-8">
+<div class="mb-3">
+<h1><%= header_text %></h1>
 <%= form_with(model: issue) do |form| %>
   <% if issue.errors.any? %>
     <div style="color: red">
@@ -11,42 +16,33 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :serviceman_id, style: "display: block" %>
-    <%= form.text_field :serviceman_id %>
+  <div class="field mb-3">
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :photo, style: "display: block" %>
-    <%= form.file_field :photo %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
+  <div class="field mb-3">
     <%= form.label :category, style: "display: block" %>
-    <%= form.text_field :category %>
+    <%= form.select :category, [['Hardware', 'Hardware'], ['Software', 'Software']], {}, { class: 'form-control' } %>
   </div>
 
-  <div>
-    <%= form.label :service_comment, style: "display: block" %>
-    <%= form.text_field :service_comment %>
+  <div class="field mb-3">
+    <%= form.label :photo, style: "display: block" %>
+    <%= form.file_field :photo, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :status_string, style: "display: block" %>
-    <%= form.text_field :status_string %>
+  <div class="field mb-3">
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description, class: "form-control", rows: '8' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions">
+  <div class="d-grid gap-2">
+    <%= form.submit "Create Issue", class: "btn btn-success btn-block" %>
+  </div>
   </div>
 <% end %>
+</div>
+</div>
+</div>
+</div>
