@@ -16,15 +16,26 @@
             <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Status</th>
+            <th scope="col">Serviceman</th>
             <th scope="col">Updated</th>
           </tr>
         </thead>
         <tbody>
           <% @issues.each do |issue| %>
+          <% if issue.status_string == "New" %>
+            <% badge_color = "text-bg-primary" %>
+          <% elsif issue.status_string == "In progress" %>
+            <% badge_color = "text-bg-warning" %>
+          <% elsif issue.status_string == "Closed" %>
+            <% badge_color = "text-bg-danger" %>
+          <% elsif issue.status_string == "Done" %>
+            <% badge_color = "text-bg-success" %>
+          <% end %>
             <tr>
               <td><%= link_to issue.id, issue %></td>
-              <td><%= truncate(issue.description, :length => 60) %></td>
-              <td><%= issue.status_string %></td>
+              <td><%= truncate(issue.title, :length => 40) %></td>
+              <td><span class="badge <%= badge_color %>"><%= issue.status_string %></span></td>
+              <td><%= issue.serviceman.name %> <%= issue.serviceman.surname %></td>
               <td><%= issue.updated_at %></td>
             </tr>
           <% end %>

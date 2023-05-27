@@ -21,8 +21,22 @@ class IssuesController < ApplicationController
 
   # POST /issues or /issues.json
   def create
+    servicemen = Serviceman.all
     @issue = Issue.new(issue_params)
-    @issue.serviceman_id = 1
+    #serviceman_with_least_issues = Serviceman.includes(:issues)
+    #                                    .where(issues: { category: issue_params[:category] }).where(category:)
+    #                                    .min_by { |serviceman| serviceman.issues.where(category: issue_params[:category] ).count }
+
+    serviceman_with_least_issues = serviceman = Serviceman.joins(:issues)
+    .where(issues: { category: issue_params[:category] })
+    .where(category: issue_params[:category])
+    .group(:id)
+    .order('COUNT(issues.id) ASC')
+    .first
+
+
+    @issue.serviceman_id = serviceman_with_least_issues.id
+
     @issue.user_id = current_user.id
     @issue.service_comment = ""
     @issue.status_string = "New"
@@ -69,6 +83,6 @@ class IssuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def issue_params
-      params.require(:issue).permit(:serviceman_id, :user_id, :photo, :description, :category, :service_comment, :status_string)
+      params.require(:issue).permit(:serviceman_id, :user_id, :photo, :description, :category, :service_comment, :status_string, :title)
     end
 end
