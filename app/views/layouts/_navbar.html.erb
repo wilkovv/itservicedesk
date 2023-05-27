@@ -28,9 +28,12 @@
                           <span class="nav">
                                 <% if user_signed_in? %>
                                 <div> Welcome <%= current_user.email %> </div>
-                                        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
+                                        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-success" %>
+                                <% elsif serviceman_signed_in? %>
+                                 <div> Welcome <%= current_serviceman.email %> </div>
+                                        <%= button_to "Sign out", destroy_serviceman_session_path, method: :delete, class: "btn btn-success" %>
                                 <% else %>
-                                        <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-dark" %>
+                                        <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-success" %>
                                 <% end %>
                                 </span>
                 </nav>

@@ -20,11 +20,13 @@
   </div>
   </div>
 
+  <%= render "devise/shared/error_messages" %>
+
   <div class="mb-3">
-  <%- if current_page?(new_serviceman_session_path) %>
+  <%- if request.path == new_serviceman_session_path %>
     <%= link_to "Login as User", new_user_session_path %><br />
   <% end %>
-    <%- if current_page?(new_user_session_path) %>
+    <%- if request.path == new_user_session_path %>
     <%= link_to "Login as Serviceman", new_serviceman_session_path %><br />
   <% end %>
   </div>
