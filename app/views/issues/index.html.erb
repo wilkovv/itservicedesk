@@ -10,6 +10,20 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <h1>Issues</h1>
+      <% if user_signed_in? || serviceman_signed_in? %>
+      <div class="row">
+        <div class="d-flex gap-2 mt-2 mb-2">
+          <% if !@owned.present? %>
+          <a href = <%= issues_path(owned: "True") %> class = "btn btn-primary">Show my issues </a>
+          <% else %>
+          <a href = <%= issues_path() %> class = "btn btn-outline-primary">Show all issues </a>
+          <% end %>
+          <% if user_signed_in? %>
+          <%= button_to "New Issue", { :action => "new" }, :method => :get, :class => "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
       <table class="table mb-0">
         <thead>
           <tr>
@@ -43,9 +57,5 @@
       </table>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12 mt-3">
-      <%= button_to "New Issue", { :action => "new" }, :method => :get, :class => "btn btn-success" %>
-    </div>
-  </div>
+
 </div>

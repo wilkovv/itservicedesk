@@ -7,8 +7,10 @@
     <%= link_to issues_path, class: "btn btn-danger" do %>
     Back to issues
     <% end %>
+    <% if serviceman_signed_in? %>
     <%= link_to edit_issue_path(@issue), class: "btn btn-success" do %>
     Edit this issue
+    <% end %>
     <% end %>
 </div>
 </div>

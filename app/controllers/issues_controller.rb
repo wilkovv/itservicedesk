@@ -1,9 +1,18 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, only: [ :new, :create]
+  before_action :authenticate_serviceman!, only: [ :edit, :update, :destroy]
   # GET /issues or /issues.json
   def index
     @issues = Issue.all
+    @owned = params[:owned]
+    if params[:owned].present?
+      if user_signed_in?
+        @issues = Issue.where(user_id: current_user.id)
+      elsif serviceman_signed_in?
+        @issues = Issue.where(serviceman_id: current_serviceman.id)
+      end
+    end
   end
 
   # GET /issues/1 or /issues/1.json
@@ -23,9 +32,6 @@ class IssuesController < ApplicationController
   def create
     servicemen = Serviceman.all
     @issue = Issue.new(issue_params)
-    #serviceman_with_least_issues = Serviceman.includes(:issues)
-    #                                    .where(issues: { category: issue_params[:category] }).where(category:)
-    #                                    .min_by { |serviceman| serviceman.issues.where(category: issue_params[:category] ).count }
 
     serviceman_with_least_issues = serviceman = Serviceman.joins(:issues)
     .where(issues: { category: issue_params[:category] })
