@@ -1,10 +1,5 @@
-<% header_text = "Editing issue" %>
+<% header_text = "Edit issue" %>
 
 <%= render "form", issue: @issue, header_text: header_text %>
 
 <br>
-
-<div>
-  <%= link_to "Show this issue", @issue %> |
-  <%= link_to "Back to issues", issues_path %>
-</div>

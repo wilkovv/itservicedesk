@@ -95,7 +95,7 @@ issues.photo.attach(io: File.open(Rails.root.join("app/assets/images/issue-2.png
 issues = Issue.create(
     serviceman_id: 1,
     user_id: 3,
-    description: "Front panel usb ports are not working correctly, more specifically - not working at all",
+    description: "Front panel usb ports are not working correctly, to be exact - not working at all",
     category: "Hardware",
     service_comment: "Internal USB connector got disconnected",
     status_string: "Done",

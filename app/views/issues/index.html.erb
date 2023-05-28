@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 mt-3" >
+    <div class="col-12 mt-5" >
       <div class="alert alert-sm <%= 'alert-success' if notice.present? %>" role="alert">
       <%= notice %>
       </div>
@@ -17,7 +17,7 @@
             <th scope="col">Title</th>
             <th scope="col">Status</th>
             <th scope="col">Serviceman</th>
-            <th scope="col">Updated</th>
+            <th class="d-none d-sm-block" scope="col">Updated</th>
           </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
               <td><%= truncate(issue.title, :length => 40) %></td>
               <td><span class="badge <%= badge_color %>"><%= issue.status_string %></span></td>
               <td><%= issue.serviceman.name %> <%= issue.serviceman.surname %></td>
-              <td><%= issue.updated_at %></td>
+              <td class="d-none d-sm-block"><%= issue.updated_at %></td>
             </tr>
           <% end %>
         </tbody>

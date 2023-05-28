@@ -1,7 +1,7 @@
 <div class="container">
-<div class="row justify-content-center mt-4">
+<div class="row justify-content-center mt-5">
 <div class="col-8">
-<div class="mb-3">
+<div class="mb-3 mt-5">
 <h1><%= header_text %></h1>
 <%= form_with(model: issue) do |form| %>
   <% if issue.errors.any? %>
@@ -26,6 +26,13 @@
     <%= form.select :category, [['Hardware', 'Hardware'], ['Software', 'Software']], {}, { class: 'form-control' } %>
   </div>
 
+  <% if header_text == "Edit issue" %>
+  <div class="field mb-3">
+    <%= form.label "Status", style: "display: block" %>
+    <%= form.select :status_string, [['New', 'New'], ['In progress', 'In progress'], ['Closed', 'Closed'], ['Done', 'Done']], {}, { class: 'form-control' } %>
+  </div>
+  <% end %>
+
   <div class="field mb-3">
     <%= form.label :photo, style: "display: block" %>
     <%= form.file_field :photo, class: "form-control" %>
@@ -33,12 +40,21 @@
 
   <div class="field mb-3">
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description, class: "form-control", rows: '8' %>
+    <%= form.text_area :description, class: "form-control", rows: '4' %>
   </div>
-
+  <% if header_text == "Edit issue" %>
+  <div class="field mb-3">
+    <%= form.label :service_comment, style: "display: block" %>
+    <%= form.text_area :service_comment, class: "form-control", rows: '4' %>
+  </div>
+  <% end %>
   <div class="actions">
-  <div class="d-grid gap-2">
-    <%= form.submit "Create Issue", class: "btn btn-success btn-block" %>
+  <div class="col-12 btn-group gap-2">
+    <%= link_to issues_path, class: "btn btn-danger" do %>
+    Cancel
+    <% end %>
+    <%= form.submit header_text, class: "btn btn-success btn-block" %>
+
   </div>
   </div>
 <% end %>
