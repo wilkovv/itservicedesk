@@ -1,10 +1,8 @@
 <html lang="en" data-bs-theme="dark">
         <div class="container-fluid px-0">
                 <nav class="navbar navbar-expand-sm bg-primary fixed-top">
-                        <button class="navbar-toggler mx-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <a class="navbar-brand px-3 mx-auto ml-auto text-center" href="#">IT Help Desk</a>
+
+                        <a class="navbar-brand px-3 text-center" href="#">IT Help Desk</a>
                         <% if user_signed_in? %>
                                 <span class="navbar-text d-block d-sm-none ml-auto">
                                 <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
@@ -26,11 +24,6 @@
 
                         <div class="collapse navbar-collapse" id="navbarNav1">
                                 <ul class="navbar-nav me-auto">
-                                        <ul class="nav">
-                                                <li class="nav-item">
-                                                        <%= link_to "Issues", issues_path, class: current_page?(issues_path) ? "nav-link active" : "nav-link", aria_current: "page" %>
-                                                </li>
-                                        </ul>
                                         
                                                         
                                 </ul>
