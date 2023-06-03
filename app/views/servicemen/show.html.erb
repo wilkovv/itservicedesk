@@ -1,10 +1,7 @@
 <p style="color: green"><%= notice %></p>
-
 <%= render @serviceman %>
-
 <div>
   <%= link_to "Edit this serviceman", edit_serviceman_path(@serviceman) %> |
   <%= link_to "Back to servicemen", servicemen_path %>
-
   <%= button_to "Destroy this serviceman", @serviceman, method: :delete %>
 </div>

@@ -1,54 +1,39 @@
 <html lang="en" data-bs-theme="dark">
-        <div class="container-fluid px-0">
-                <nav class="navbar navbar-expand-sm bg-primary fixed-top">
-
-                        <a class="navbar-brand px-3 text-center" href="#">IT Help Desk</a>
-                        <% if user_signed_in? %>
-                                <span class="navbar-text d-block d-sm-none ml-auto">
-                                <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
-                                </span>
-                        <% elsif serviceman_signed_in? %>
-                                <span class="navbar-text d-block d-sm-none ml-auto">
-                                <%= button_to "Sign out", destroy_serviceman_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
-                                </span>
-                        <% else %>
-                                <span class="navbar-text d-block d-sm-none ml-auto">
-                                <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-outline-light mx-3" %>
-                                </span>
-                        <% end %>
-
-
-
-
-
-
-                        <div class="collapse navbar-collapse" id="navbarNav1">
-                                <ul class="navbar-nav me-auto">
-                                        
-                                                        
-                                </ul>
-                                <% if user_signed_in? %>
-                                
-                                <span class="text-light mx-3 d-none d-sm-block"><%= current_user.name %> <%= current_user.surname %></span>
-                                        <span class="navbar-text d-none d-sm-block">
-                                        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
-                                        </span>
-                                <% elsif serviceman_signed_in? %>
-                                 <span class="text-light mx-3 d-none d-sm-block"><%= current_serviceman.name %> <%= current_serviceman.surname %></span>
-                                        <span class="navbar-text d-none d-sm-block">
-                                        <%= button_to "Sign out", destroy_serviceman_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
-                                        </span>
-                                <% else %>
-                                        <span class="navbar-text d-none d-sm-block">
-                                        <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-outline-light mx-3" %>
-                                        </span>
-                                <% end %>
-                        </div>
-
-
-
-
-
-                </nav>
-        </div>
+  <div class="container-fluid px-0">
+    <nav class="navbar navbar-expand-sm bg-primary fixed-top">
+      <a class="navbar-brand px-3 text-center" href="#">IT Help Desk</a>
+      <% if user_signed_in? %>
+        <span class="navbar-text d-block d-sm-none ml-auto">
+          <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
+        </span>
+      <% elsif serviceman_signed_in? %>
+        <span class="navbar-text d-block d-sm-none ml-auto">
+          <%= button_to "Sign out", destroy_serviceman_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
+        </span>
+      <% else %>
+        <span class="navbar-text d-block d-sm-none ml-auto">
+          <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-outline-light mx-3" %>
+        </span>
+      <% end %>
+      <div class="collapse navbar-collapse" id="navbarNav1">
+        <ul class="navbar-nav me-auto">
+        </ul>
+        <% if user_signed_in? %>
+          <span class="text-light mx-3 d-none d-sm-block"><%= current_user.name %> <%= current_user.surname %></span>
+          <span class="navbar-text d-none d-sm-block">
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
+          </span>
+        <% elsif serviceman_signed_in? %>
+          <span class="text-light mx-3 d-none d-sm-block"><%= current_serviceman.name %> <%= current_serviceman.surname %></span>
+          <span class="navbar-text d-none d-sm-block">
+            <%= button_to "Sign out", destroy_serviceman_session_path, method: :delete, class: "btn btn-outline-light mx-3" %>
+          </span>
+        <% else %>
+          <span class="navbar-text d-none d-sm-block">
+            <%= button_to "Sign in", new_user_session_path, method: :get, class: "btn btn-outline-light mx-3" %>
+          </span>
+        <% end %>
+      </div>
+    </nav>
+  </div>
 </html>
