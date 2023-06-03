@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   before_action :set_issue, only: %i[ show edit update destroy ]
   before_action :authenticate_user_or_serviceman!, only: %i[ show myissues ]
   before_action :authenticate_user!, only: %i[ new create ]
-  before_action :authenticate_serviceman!, only: %i[ index edit update ]
+  before_action :authenticate_serviceman!, only: %i[ index edit update destroy ]
   
   # GET /issues or /issues.json
   def index
