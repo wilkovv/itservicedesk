@@ -1,22 +1,31 @@
 class IssuesController < ApplicationController
   before_action :set_issue, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: [ :new, :create]
-  before_action :authenticate_serviceman!, only: [ :edit, :update, :destroy]
+  before_action :authenticate_user_or_serviceman!, only: %i[ show myissues ]
+  before_action :authenticate_user!, only: %i[ new create ]
+  before_action :authenticate_serviceman!, only: %i[ index edit update ]
+  
   # GET /issues or /issues.json
   def index
     @issues = Issue.all
-    @owned = params[:owned]
-    if params[:owned].present?
-      if user_signed_in?
-        @issues = Issue.where(user_id: current_user.id)
-      elsif serviceman_signed_in?
-        @issues = Issue.where(serviceman_id: current_serviceman.id)
-      end
+  end
+
+  # GET /myissues
+  def myissues
+    @issues = []
+    if user_signed_in?
+      @issues = Issue.where(user_id: current_user.id)
+    elsif serviceman_signed_in?
+      @issues = Issue.where(serviceman_id: current_serviceman.id)
     end
   end
 
   # GET /issues/1 or /issues/1.json
   def show
+    if user_signed_in?
+      if @issue.user_id != current_user.id
+      redirect_to myissues_path()
+      end
+    end
   end
 
   # GET /issues/new
@@ -91,4 +100,13 @@ class IssuesController < ApplicationController
     def issue_params
       params.require(:issue).permit(:serviceman_id, :user_id, :photo, :description, :category, :service_comment, :status_string, :title)
     end
+
+    def authenticate_user_or_serviceman!
+      if not serviceman_signed_in?
+        authenticate_user!
+      else
+        authenticate_serviceman! 
+      end
+    end
+
 end

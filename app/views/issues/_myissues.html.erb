@@ -1,0 +1,65 @@
+<div id="<%= dom_id issue %>">
+<% if issue.status_string == "New" %>
+  <% badge_color = "text-bg-primary" %>
+<% elsif issue.status_string == "In progress" %>
+  <% badge_color = "text-bg-warning" %>
+<% elsif issue.status_string == "Closed" %>
+  <% badge_color = "text-bg-danger" %>
+<% elsif issue.status_string == "Done" %>
+  <% badge_color = "text-bg-success" %>
+<% end %>
+
+<div class="container">
+<div class="row justify-content-center mt-5">
+<div class="col-8">
+<div class="mb-3 mt-5">
+
+  <h1>
+    <%= issue.title %>
+  </h1>
+
+  <p>
+    <strong>Serviceman:</strong>
+    <%= issue.serviceman.name %> <%= issue.serviceman.surname %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= issue.user.name %> <%=issue.user.surname%>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <span class="badge <%= badge_color%> "><%= issue.status_string %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= issue.category %>
+  </p>
+
+
+  <p>
+    <strong>Description:</strong>
+    <%= issue.description %>
+  </p>
+
+  <% if !issue.service_comment.empty? %>
+  <p>
+    <strong>Serviceman comment:</strong>
+    <%= issue.service_comment %>
+  </p>
+  <% end %>
+
+  <% if issue.photo.attached? %>
+  <p>
+    <%= image_tag issue.photo , class: "img-fluid" %>
+  </p>
+  <% end %>
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
