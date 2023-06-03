@@ -67,9 +67,10 @@ issues = Issue.create(
     service_comment: "",
     status_string: "New",
     title: "Overheating CPU",
+    photo: {io: File.open(Rails.root.join("app/assets/images/issue-1.png")), filename: "issue-1.png"},
+    created_at: DateTime.new(2023, 5, 1, 9, 30, 0),
+    updated_at: DateTime.new(2023, 5, 1, 9, 30, 0)
 )
-issues.photo.attach(io: File.open(Rails.root.join("app/assets/images/issue-1.png")), filename: "issue-1.png")
-
 issues = Issue.create(
     serviceman_id: 2,
     user_id: 3,
@@ -77,10 +78,11 @@ issues = Issue.create(
     category: "Software",
     service_comment: "Won't fix, working as intended",
     status_string: "Closed",
-    title: "Slow PC"
+    title: "Slow PC",
+    photo: {io: File.open(Rails.root.join("app/assets/images/issue-3.png")), filename: "issue-2.png"},
+    created_at: DateTime.new(2023, 5, 2, 9, 30, 0),
+    updated_at: DateTime.new(2023, 5, 3, 9, 30, 0)
 )
-issues.photo.attach(io: File.open(Rails.root.join("app/assets/images/issue-3.png")), filename: "issue-2.png")
-
 issues = Issue.create(
     serviceman_id: 3,
     user_id: 2,
@@ -88,10 +90,11 @@ issues = Issue.create(
     category: "Hardware",
     service_comment: "Monitor to be replaced next month",
     status_string: "In progress",
-    title: "Artifacts on screen"
+    title: "Artifacts on screen",
+    photo: {io: File.open(Rails.root.join("app/assets/images/issue-2.png")), filename: "issue-3.png"},
+    created_at: DateTime.new(2023, 5, 2, 11, 30, 0),
+    updated_at: DateTime.new(2023, 5, 2, 15, 30, 0)
 )
-issues.photo.attach(io: File.open(Rails.root.join("app/assets/images/issue-2.png")), filename: "issue-3.png")
-
 issues = Issue.create(
     serviceman_id: 1,
     user_id: 3,
@@ -99,5 +102,7 @@ issues = Issue.create(
     category: "Hardware",
     service_comment: "Internal USB connector got disconnected",
     status_string: "Done",
-    title: "Broken USB port"
+    title: "Broken USB port",
+    created_at: DateTime.new(2023, 5, 4, 21, 30, 0),
+    updated_at: DateTime.new(2023, 5, 7, 9, 30, 0)
 )

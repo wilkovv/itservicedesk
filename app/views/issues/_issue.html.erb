@@ -9,9 +9,10 @@
     <% badge_color = "text-bg-success" %>
   <% end %>
   <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-3">
       <div class="col-8">
-        <div class="mb-3 mt-5">
+      <%= render 'layouts/alert' %>
+        <div class="mb-3">
           <h1>
             <%= issue.title %>
           </h1>

@@ -9,7 +9,7 @@ class IssuesController < ApplicationController
     @issues = Issue.all
   end
 
-  # GET /myissues
+  # GET /myissues or /myissues.json
   def myissues
     @issues = []
     if user_signed_in?
