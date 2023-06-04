@@ -108,12 +108,9 @@ issues = Issue.create(
     updated_at: DateTime.new(2023, 6, 3, 9, 30, 0)
 )
 current_date = Date.today
-# Create a lot of random placeholder issues for testing
+# Create a lot of placeholder issues for statistics testing
 
 200.times do |i|
-    # Loop body
-    puts "Iteration #{i + 1}"
-    
     day_offset = rand(1..29)
     create_date = current_date - 30 + day_offset
     update_date = current_date - 30 + rand((day_offset+1)..30)
