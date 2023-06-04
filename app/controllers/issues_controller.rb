@@ -1,6 +1,7 @@
 class IssuesController < ApplicationController
+  require 'date'
   before_action :set_issue, only: %i[ show edit update destroy ]
-  before_action :authenticate_user_or_serviceman!, only: %i[ show myissues ]
+  before_action :authenticate_user_or_serviceman!, only: %i[ show myissues mystats ]
   before_action :authenticate_user!, only: %i[ new create ]
   before_action :authenticate_serviceman!, only: %i[ index edit update destroy ]
   
@@ -16,6 +17,25 @@ class IssuesController < ApplicationController
       @issues = Issue.where(user_id: current_user.id)
     elsif serviceman_signed_in?
       @issues = Issue.where(serviceman_id: current_serviceman.id)
+    end
+  end
+
+  # GET /myissues/statistics or /myissues/statistics.json
+
+  def mystats
+    @issues = myissues()
+    current_date = Date.today
+
+    @issues_open = {}
+    @issues_created = {}
+    @issues_done_closed = {}
+    (0..30).each do |offset|
+      date = current_date - 30 + offset
+      beginning_of_day = Time.new(date.year, date.month, date.day, 0, 0, 0)
+
+      @issues_created[date] = @issues.where("created_at >= ? AND created_at <= ?", beginning_of_day, date.end_of_day).count
+      @issues_done_closed[date] = @issues.where("(status_string IN (?)) AND updated_at >= ? AND updated_at <= ?",['Done', 'Closed'], beginning_of_day, date.end_of_day).count
+      @issues_open[date] = @issues.where("(status_string IN (?) AND created_at <= ?) OR (updated_at >= ? AND created_at <= ?)", ['New', 'In progress'], date.end_of_day, date.end_of_day, date.end_of_day).count
     end
   end
 

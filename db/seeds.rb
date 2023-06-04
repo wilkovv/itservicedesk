@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 require "active_storage"
+require 'date'
 users = User.create(
     email: 'jan.kowalski@example.com',
     password: 'password',
@@ -68,8 +69,8 @@ issues = Issue.create(
     status_string: "New",
     title: "Overheating CPU",
     photo: {io: File.open(Rails.root.join("app/assets/images/issue-1.png")), filename: "issue-1.png"},
-    created_at: DateTime.new(2023, 5, 1, 9, 30, 0),
-    updated_at: DateTime.new(2023, 5, 1, 9, 30, 0)
+    created_at: DateTime.new(2023, 6, 1, 9, 30, 0),
+    updated_at: DateTime.new(2023, 6, 1, 9, 30, 0)
 )
 issues = Issue.create(
     serviceman_id: 2,
@@ -80,8 +81,8 @@ issues = Issue.create(
     status_string: "Closed",
     title: "Slow PC",
     photo: {io: File.open(Rails.root.join("app/assets/images/issue-3.png")), filename: "issue-2.png"},
-    created_at: DateTime.new(2023, 5, 2, 9, 30, 0),
-    updated_at: DateTime.new(2023, 5, 3, 9, 30, 0)
+    created_at: DateTime.new(2023, 6, 2, 9, 30, 0),
+    updated_at: DateTime.new(2023, 6, 3, 9, 30, 0)
 )
 issues = Issue.create(
     serviceman_id: 3,
@@ -92,8 +93,8 @@ issues = Issue.create(
     status_string: "In progress",
     title: "Artifacts on screen",
     photo: {io: File.open(Rails.root.join("app/assets/images/issue-2.png")), filename: "issue-3.png"},
-    created_at: DateTime.new(2023, 5, 2, 11, 30, 0),
-    updated_at: DateTime.new(2023, 5, 2, 15, 30, 0)
+    created_at: DateTime.new(2023, 6, 2, 11, 30, 0),
+    updated_at: DateTime.new(2023, 6, 2, 15, 30, 0)
 )
 issues = Issue.create(
     serviceman_id: 1,
@@ -103,6 +104,30 @@ issues = Issue.create(
     service_comment: "Internal USB connector got disconnected",
     status_string: "Done",
     title: "Broken USB port",
-    created_at: DateTime.new(2023, 5, 4, 21, 30, 0),
-    updated_at: DateTime.new(2023, 5, 7, 9, 30, 0)
+    created_at: DateTime.new(2023, 6, 2, 21, 30, 0),
+    updated_at: DateTime.new(2023, 6, 3, 9, 30, 0)
 )
+current_date = Date.today
+# Create a lot of random placeholder issues for testing
+
+200.times do |i|
+    # Loop body
+    puts "Iteration #{i + 1}"
+    
+    day_offset = rand(1..29)
+    create_date = current_date - 30 + day_offset
+    update_date = current_date - 30 + rand((day_offset+1)..30)
+
+    issues = Issue.create(
+        serviceman_id: rand(1..3),
+        user_id: rand(1..4),
+        description: "Placeholder",
+        category: "Hardware",
+        service_comment: "Placeholder",
+        status_string: "Done",
+        title: "Placeholder",
+        created_at: DateTime.new(create_date.year,create_date.month,create_date.day,12,30,0),
+        updated_at: DateTime.new(update_date.year,update_date.month,update_date.day,12,30,0)
+    )
+    sleep(0.005)
+  end

@@ -1,0 +1,13 @@
+
+<div class="mt-3 px-3">
+<h1>Statistics of my issues, last 30 days</h1>
+
+<div class="mt-5 col-12 bg-gray">
+<%= column_chart [
+    {name: 'Issues created', data: @issues_created },
+    {name: 'Issues done/closed', data: @issues_done_closed },
+    {name: 'Issues open', data: @issues_open }]
+%>
+</div>
+</div>
+</div>

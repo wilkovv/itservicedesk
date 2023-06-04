@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, skip: [:registrations, :passwords, :confirmations, :omniauth_callbacks, :unlock, :invitations]
   resources :issues
   get 'myissues', to: 'issues#myissues'
+  get 'myissues/statistics', to: 'issues#mystats'
   #resources :servicemen
   #resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
