@@ -5,4 +5,5 @@ class Serviceman < ApplicationRecord
          :recoverable, :rememberable, :validatable
     has_many :issues
     has_many :users, through: :issues
+    validates :category, presence: true, inclusion: { in: ['Hardware', 'Software'], message: 'must be either "Hardware" or "Software"' }
 end
