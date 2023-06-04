@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_27_203749) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_04_192634) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,6 +51,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_27_203749) do
     t.string "title"
     t.index ["serviceman_id"], name: "index_issues_on_serviceman_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
+  end
+
+  create_table "jwt_denylist", force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", precision: nil, null: false
+    t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
   create_table "servicemen", force: :cascade do |t|

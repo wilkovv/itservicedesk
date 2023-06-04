@@ -1,4 +1,5 @@
 class ServicemenController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_serviceman, only: %i[ show edit update destroy ]
 
   # GET /servicemen or /servicemen.json

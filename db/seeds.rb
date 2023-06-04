@@ -126,5 +126,5 @@ current_date = Date.today
         created_at: DateTime.new(create_date.year,create_date.month,create_date.day,12,30,0),
         updated_at: DateTime.new(update_date.year,update_date.month,update_date.day,12,30,0)
     )
-    sleep(0.005)
+    sleep(0.05)
   end

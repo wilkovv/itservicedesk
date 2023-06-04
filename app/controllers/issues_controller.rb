@@ -1,5 +1,6 @@
 class IssuesController < ApplicationController
   require 'date'
+  skip_before_action :verify_authenticity_token
   before_action :set_issue, only: %i[ show edit update destroy ]
   before_action :authenticate_user_or_serviceman!, only: %i[ show myissues mystats ]
   before_action :authenticate_user!, only: %i[ new create ]
@@ -36,6 +37,10 @@ class IssuesController < ApplicationController
       @issues_created[date] = @issues.where("created_at >= ? AND created_at <= ?", beginning_of_day, date.end_of_day).count
       @issues_done_closed[date] = @issues.where("(status_string IN (?)) AND updated_at >= ? AND updated_at <= ?",['Done', 'Closed'], beginning_of_day, date.end_of_day).count
       @issues_open[date] = @issues.where("(status_string IN (?) AND created_at <= ?) OR (updated_at >= ? AND created_at <= ?)", ['New', 'In progress'], date.end_of_day, date.end_of_day, date.end_of_day).count
+    end
+    respond_to do |format|
+      format.json { render 'statistics' }
+      format.html { render :mystats }
     end
   end
 

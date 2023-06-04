@@ -81,3 +81,4 @@ gem "devise", "~> 4.9"
 
 gem 'chartkick'
 gem 'groupdate'
+gem 'devise-jwt'

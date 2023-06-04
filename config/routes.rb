@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :servicemen, skip: [:registrations, :passwords, :confirmations, :omniauth_callbacks, :unlock, :invitations]
-  devise_for :users, skip: [:registrations, :passwords, :confirmations, :omniauth_callbacks, :unlock, :invitations]
+  devise_for :servicemen, skip: [:registrations, :passwords, :confirmations, :omniauth_callbacks, :unlock, :invitations], controllers: {sessions: 'users/sessions'}
+  devise_for :users, skip: [:registrations, :passwords, :confirmations, :omniauth_callbacks, :unlock, :invitations], controllers: {sessions: 'servicemen/sessions'}
   resources :issues
   get 'myissues', to: 'issues#myissues'
   get 'myissues/statistics', to: 'issues#mystats'
