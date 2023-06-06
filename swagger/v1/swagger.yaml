@@ -1,0 +1,115 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/issues":
+    get:
+      summary: list issues
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create issue
+      responses:
+        '200':
+          description: successful
+  "/issues/new":
+    get:
+      summary: new issue
+      responses:
+        '200':
+          description: successful
+  "/issues/{id}/edit":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: edit issue
+      responses:
+        '200':
+          description: successful
+  "/issues/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show issue
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: update issue
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update issue
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete issue
+      responses:
+        '200':
+          description: successful
+  "/myissues":
+    get:
+      summary: myissues issue
+      responses:
+        '200':
+          description: successful
+  "/myissues/statistics":
+    get:
+      summary: mystats issue
+      responses:
+        '200':
+          description: successful
+  "/":
+    get:
+      summary: myissues issue
+      responses:
+        '200':
+          description: successful
+  "/users/sign_in":
+    get:
+      summary: login
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: login
+      parameters: []
+      responses:
+        '201':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - email
+              - password
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: 127.0.0.1:3000

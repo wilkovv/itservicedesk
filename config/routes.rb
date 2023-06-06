@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   devise_for :servicemen, skip: [:registrations, :passwords, :confirmations, :omniauth_callbacks, :unlock, :invitations], controllers: {sessions: 'users/sessions'}
   devise_for :users, skip: [:registrations, :passwords, :confirmations, :omniauth_callbacks, :unlock, :invitations], controllers: {sessions: 'servicemen/sessions'}
   resources :issues
